@@ -7,8 +7,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 <style>
   :root {
     --bg-primary: #1a1a1a;
@@ -97,6 +95,23 @@
     margin-bottom: 6px; margin-top: 12px;
   }
   .kpi-value .unit { font-size: 16px; font-weight: 400; color: var(--text-tertiary); margin-left: 2px; }
+
+  /* KPI split bar for legacy/IOP */
+  .kpi-split {
+    display: flex; gap: 16px; align-items: flex-end;
+    margin-top: 12px; margin-bottom: 4px;
+  }
+  .kpi-split-item {
+    display: flex; flex-direction: column; gap: 3px;
+  }
+  .kpi-split-label {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.04em;
+    text-transform: uppercase; color: var(--text-tertiary);
+  }
+  .kpi-split-value {
+    font-size: 26px; font-weight: 600; letter-spacing: -0.03em; line-height: 1;
+  }
+  .kpi-split-value .unit { font-size: 14px; font-weight: 400; color: var(--text-tertiary); margin-left: 1px; }
 
   /* KPI visible target line */
   .kpi-target {
@@ -298,9 +313,6 @@
   .page-wrapper { max-width: 1280px; margin: 0 auto; padding: 60px 40px; }
   @media (max-width: 768px) { .page-wrapper { padding: 40px 20px; } }
 
-  /* Reveal animation - start visible, GSAP will animate */
-  .reveal { opacity: 1; transform: translateY(0); }
-
   /* Inline comment block */
   .comment-toggle {
     display: inline-flex; align-items: center; gap: 6px;
@@ -371,7 +383,7 @@
 <div class="page-wrapper">
 
   <!-- Header -->
-  <div class="reveal" style="margin-bottom: 48px;">
+  <div style="margin-bottom: 48px;">
     <p class="label" style="margin-bottom: 12px;">Catálogo · 25 Feb 2026 · 8 marcas</p>
     <h1 style="font-size: clamp(32px,5vw,56px); font-weight:600; letter-spacing:-0.021em; line-height:1.1; margin-bottom:12px;">
       Estado de la migración de catálogo
@@ -386,14 +398,23 @@
 
   <!-- KPIs — Fila 1: 4 tarjetas -->
   <div style="margin-bottom:40px">
-    <div class="kpi-row kpi-row-4 reveal" data-delay="0.1">
+    <div class="kpi-row kpi-row-4">
 
       <!-- 1. Lecturas watcher producto -->
       <div class="surface kpi-card">
         <div class="label">Lecturas watcher producto</div>
-        <div class="kpi-value color-green">1.92<span class="unit"> Bil</span></div>
-        <div style="font-size:12px;color:var(--accent-green)">▼ 15%</div>
-        <div class="kpi-target">🎯 Objetivo: 0 lecturas</div>
+        <div class="kpi-split">
+          <div class="kpi-split-item">
+            <div class="kpi-split-label">Legacy</div>
+            <div class="kpi-split-value color-red">85<span class="unit">%</span></div>
+          </div>
+          <div class="kpi-split-item">
+            <div class="kpi-split-label">IOP</div>
+            <div class="kpi-split-value color-green">15<span class="unit">%</span></div>
+          </div>
+        </div>
+        <div style="font-size:12px;color:var(--accent-green)">▼ 15% legacy vs mes anterior</div>
+        <div class="kpi-target">🎯 Objetivo: 0% legacy · 100% IOP</div>
         <button class="kpi-info-btn" onclick="toggleKpiInfo(this)">
           <span class="kpi-info-icon">▶</span> Info
         </button>
@@ -401,13 +422,13 @@
           <div class="kpi-info-inner" style="border-left-color: var(--accent-blue);">
             <div class="kpi-info-row">
               <span class="kpi-info-label">Qué</span>
-              <span class="kpi-info-value">Reducir las lecturas del watcher de producto a 0. Datos por APIs IOP.</span>
+              <span class="kpi-info-value">Reducir las lecturas legacy del watcher de producto a 0%. Todas las lecturas deben ir por APIs IOP.</span>
             </div>
             <div class="kpi-info-row">
               <span class="kpi-info-label">Cómo</span>
-              <span class="kpi-info-value">% lecturas actuales vs punto de partida. Por entidad y cadena.</span>
+              <span class="kpi-info-value">% lecturas legacy vs IOP. Bajada del 15% debida al apagado del watcher de disponibilidad en Zara.</span>
             </div>
-            <div class="kpi-info-objetivo">🎯 Objetivo: 0 lecturas</div>
+            <div class="kpi-info-objetivo">🎯 Objetivo: 0% legacy · 100% IOP</div>
           </div>
         </div>
       </div>
@@ -415,9 +436,18 @@
       <!-- 2. Lecturas watcher navigation -->
       <div class="surface kpi-card">
         <div class="label">Lecturas watcher navigation</div>
-        <div class="kpi-value color-green">7.11<span class="unit"> Mil</span></div>
-        <div style="font-size:12px;color:var(--accent-green)">▼ 12%</div>
-        <div class="kpi-target">🎯 Objetivo: 0 lecturas</div>
+        <div class="kpi-split">
+          <div class="kpi-split-item">
+            <div class="kpi-split-label">Legacy</div>
+            <div class="kpi-split-value color-red">100<span class="unit">%</span></div>
+          </div>
+          <div class="kpi-split-item">
+            <div class="kpi-split-label">IOP</div>
+            <div class="kpi-split-value color-green">0<span class="unit">%</span></div>
+          </div>
+        </div>
+        <div style="font-size:12px;color:var(--accent-green)">▼ 12% legacy vs mes anterior</div>
+        <div class="kpi-target">🎯 Objetivo: 0% legacy · 100% IOP</div>
         <button class="kpi-info-btn" onclick="toggleKpiInfo(this)">
           <span class="kpi-info-icon">▶</span> Info
         </button>
@@ -425,13 +455,13 @@
           <div class="kpi-info-inner" style="border-left-color: var(--accent-cyan);">
             <div class="kpi-info-row">
               <span class="kpi-info-label">Qué</span>
-              <span class="kpi-info-value">Reducir las lecturas del watcher de navigation a 0. Datos por APIs IOP.</span>
+              <span class="kpi-info-value">Reducir las lecturas legacy del watcher de navigation a 0%. Todas las lecturas deben ir por APIs IOP.</span>
             </div>
             <div class="kpi-info-row">
               <span class="kpi-info-label">Cómo</span>
-              <span class="kpi-info-value">Nº lecturas sobre tablas clave. Por entidad y cadena.</span>
+              <span class="kpi-info-value">% lecturas legacy vs IOP. Bajada del 12% por menor actividad post-rebajas, no por migración efectiva.</span>
             </div>
-            <div class="kpi-info-objetivo">🎯 Objetivo: 0 lecturas</div>
+            <div class="kpi-info-objetivo">🎯 Objetivo: 0% legacy · 100% IOP</div>
           </div>
         </div>
       </div>
@@ -487,7 +517,7 @@
     </div>
 
     <!-- KPIs — Fila 2: 3 tarjetas -->
-    <div class="kpi-row kpi-row-3 reveal" data-delay="0.15">
+    <div class="kpi-row kpi-row-3">
 
       <!-- 5. Administración de menú -->
       <div class="surface kpi-card">
@@ -565,7 +595,7 @@
   </div>
 
   <!-- Lecturas dashboards -->
-  <div class="two-col reveal" style="transition-delay:0.15s">
+  <div class="two-col">
 
     <!-- Lecturas watcher producto -->
     <div class="surface section-card">
@@ -667,7 +697,7 @@
   </div>
 
   <!-- Deprecar watchers de producto -->
-  <div class="surface section-card reveal" style="margin-bottom:24px; transition-delay:0.2s">
+  <div class="surface section-card" style="margin-bottom:24px;">
     <div class="section-header">
       <div class="section-accent" style="background: var(--accent-red);"></div>
       <div style="flex:1">
@@ -755,7 +785,7 @@
   </div>
 
   <!-- Eliminar dependencias watcher producto -->
-  <div class="surface section-card reveal" style="margin-bottom:24px; transition-delay:0.25s">
+  <div class="surface section-card" style="margin-bottom:24px;">
     <div class="section-header">
       <div class="section-accent" style="background: var(--accent-orange);"></div>
       <div style="flex:1">
@@ -831,7 +861,7 @@
   </div>
 
   <!-- Feeds y Menú -->
-  <div class="two-col reveal" style="transition-delay:0.3s">
+  <div class="two-col">
     <div class="surface section-card">
       <div class="section-header">
         <div class="section-accent" style="background: var(--accent-orange);"></div>
@@ -922,7 +952,7 @@
   </div>
 
   <!-- Parrillas -->
-  <div class="surface section-card reveal" style="transition-delay:0.35s">
+  <div class="surface section-card">
     <div class="section-header">
       <div class="section-accent" style="background: var(--accent-green);"></div>
       <div>
@@ -979,42 +1009,14 @@
 </div>
 
 <script>
-  gsap.registerPlugin(ScrollTrigger);
-
-  document.querySelectorAll('.reveal').forEach((el) => {
-    const delay = parseFloat(el.getAttribute('data-delay') || el.style.transitionDelay || 0);
-    gsap.fromTo(el,
-      { opacity: 0, y: 32 },
-      {
-        opacity: 1, y: 0, duration: 0.9,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: el,
-          start: "top 88%",
-          toggleActions: "play none none reverse"
-        },
-        delay
-      }
-    );
-  });
-
   // KPI card hover glow
   document.querySelectorAll('.kpi-card').forEach(card => {
     card.addEventListener('mouseenter', () => {
-      gsap.to(card, { scale: 1.02, duration: 0.3, ease: "power2.out" });
+      card.style.transform = 'scale(1.02)';
+      card.style.transition = 'transform 0.3s cubic-bezier(0.16,1,0.3,1)';
     });
     card.addEventListener('mouseleave', () => {
-      gsap.to(card, { scale: 1, duration: 0.3, ease: "power2.out" });
-    });
-  });
-
-  // Table row hover
-  document.querySelectorAll('tbody tr:not(.total-row)').forEach(row => {
-    row.addEventListener('mouseenter', () => {
-      gsap.to(row, { x: 4, duration: 0.2, ease: "power2.out" });
-    });
-    row.addEventListener('mouseleave', () => {
-      gsap.to(row, { x: 0, duration: 0.2, ease: "power2.out" });
+      card.style.transform = 'scale(1)';
     });
   });
 
@@ -1051,15 +1053,8 @@
       if (mode === 'ok') show = score > 0;
       if (mode === 'ko') show = score === 0;
 
-      if (show) {
-        gsap.to(row, { opacity: 1, height: 'auto', duration: 0.3 });
-        row.style.display = '';
-      } else {
-        gsap.to(row, {
-          opacity: 0, duration: 0.2,
-          onComplete: () => { row.style.display = 'none'; }
-        });
-      }
+      row.style.display = show ? '' : 'none';
+      row.style.opacity = show ? '1' : '0';
     });
   }
 </script>
