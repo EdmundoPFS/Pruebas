@@ -571,7 +571,7 @@
       <div class="surface kpi-card">
         <div class="label">Administración de parrillas</div>
         <div class="kpi-value color-orange">78.4<span class="unit">%</span></div>
-        <div style="font-size:12px;color:var(--accent-red)">▼ 8.4%</div>
+        <div style="font-size:12px;color:var(--text-tertiary)">▲ 0%</div>
         <div class="kpi-target">🎯 Objetivo: 100%</div>
         <button class="kpi-info-btn" onclick="toggleKpiInfo(this)">
           <span class="kpi-info-icon">▶</span> Info
@@ -912,7 +912,7 @@
         <div>
           <div class="section-title">Administración de menú</div>
           <div class="section-objetivo">🎯 Migrar el 100% de la administración del menú</div>
-          <div class="section-desc" style="margin-bottom:8px">F1: jerarquía, visibilidad y atributos · F2: gestión completa de categoría · 1 = por IOP (objetivo)</div>
+          <div class="section-desc" style="margin-bottom:8px">✅ = capacidades de administración activadas · F1: jerarquía, visibilidad y atributos · F2: gestión completa de categoría</div>
           <button class="comment-toggle" id="btn-menu" onclick="toggleComment('menu')"><span class="ct-arrow">▶</span> Contexto</button>
           <div class="comment-body" id="cmt-menu">
             <div class="comment-inner" style="border-left-color: var(--accent-red);">
@@ -958,7 +958,7 @@
       <div>
         <div class="section-title">Administración de parrillas</div>
         <div class="section-objetivo">🎯 Administrar el 100% de las parrillas por IOP</div>
-        <div class="section-desc" style="margin-bottom:8px">% medio de grids migrados por marca · objetivo: 100% · dos cortes temporales</div>
+        <div class="section-desc" style="margin-bottom:8px">% medio de grids migrados por marca · objetivo: 100%</div>
         <button class="comment-toggle" id="btn-parrillas" onclick="toggleComment('parrillas')"><span class="ct-arrow">▶</span> Contexto</button>
         <div class="comment-body" id="cmt-parrillas">
           <div class="comment-inner" style="border-left-color: var(--accent-green);">
@@ -970,35 +970,32 @@
     <div style="overflow-x:auto; margin-top:20px">
       <table class="table-fixed">
         <colgroup>
-          <col style="width:14%">
-          <col style="width:20%">
-          <col style="width:20%">
           <col style="width:18%">
-          <col style="width:28%">
+          <col style="width:22%">
+          <col style="width:22%">
+          <col style="width:38%">
         </colgroup>
         <thead>
           <tr>
             <th>Marca</th>
-            <th class="center">25 Feb 2026</th>
-            <th class="center">2 Mar 2026</th>
+            <th class="center">% migrado</th>
             <th class="center">Variación</th>
             <th class="center">Estado actual</th>
           </tr>
         </thead>
         <tbody>
-          <tr><td class="td-brand">ZA</td><td class="center">100%</td><td class="center">100%</td><td class="center" style="color:var(--text-tertiary)">—</td><td class="center"><span class="pill pill-green">Completado</span></td></tr>
-          <tr><td class="td-brand">ST</td><td class="center">98.6%</td><td class="center">96.0%</td><td class="center delta-neg">▼ 2.6pp</td><td class="center"><span class="pill pill-orange">Casi</span></td></tr>
-          <tr><td class="td-brand">PB</td><td class="center">100%</td><td class="center">98.97%</td><td class="center delta-neg">▼ 1.0pp</td><td class="center"><span class="pill pill-orange">Casi</span></td></tr>
-          <tr><td class="td-brand">OY</td><td class="center">100%</td><td class="center">100%</td><td class="center" style="color:var(--text-tertiary)">—</td><td class="center"><span class="pill pill-green">Completado</span></td></tr>
-          <tr><td class="td-brand">BK</td><td class="center">100%</td><td class="center">89.5%</td><td class="center delta-neg">▼ 10.5pp</td><td class="center"><span class="pill pill-orange">Parcial</span></td></tr>
-          <tr><td class="td-brand">MD</td><td class="center">95.9%</td><td class="center">93.4%</td><td class="center delta-neg">▼ 2.5pp</td><td class="center"><span class="pill pill-orange">Parcial</span></td></tr>
-          <tr><td class="td-brand">ZH</td><td class="center">100%</td><td class="center">49.0%</td><td class="center delta-neg">▼ 51pp</td><td class="center"><span class="pill pill-red">Regresión</span></td></tr>
-          <tr><td class="td-brand">LF</td><td class="center">0%</td><td class="center">0%</td><td class="center" style="color:var(--text-tertiary)">—</td><td class="center"><span class="pill pill-red">Sin migrar</span></td></tr>
-          <tr class="total-row"><td class="td-brand">TOTAL</td><td class="center">86.8%</td><td class="center">78.4%</td><td class="center delta-neg">▼ 8.4pp</td><td class="center"></td></tr>
+          <tr><td class="td-brand">ZA</td><td class="center">100%</td><td class="center" style="color:var(--text-tertiary)">—</td><td class="center"><span class="pill pill-green">Completado</span></td></tr>
+          <tr><td class="td-brand">ST</td><td class="center">96.0%</td><td class="center" style="color:var(--text-tertiary)">—</td><td class="center"><span class="pill pill-orange">Casi</span></td></tr>
+          <tr><td class="td-brand">PB</td><td class="center">98.97%</td><td class="center" style="color:var(--text-tertiary)">—</td><td class="center"><span class="pill pill-orange">Casi</span></td></tr>
+          <tr><td class="td-brand">OY</td><td class="center">100%</td><td class="center" style="color:var(--text-tertiary)">—</td><td class="center"><span class="pill pill-green">Completado</span></td></tr>
+          <tr><td class="td-brand">BK</td><td class="center">89.5%</td><td class="center" style="color:var(--text-tertiary)">—</td><td class="center"><span class="pill pill-orange">Parcial</span></td></tr>
+          <tr><td class="td-brand">MD</td><td class="center">93.4%</td><td class="center" style="color:var(--text-tertiary)">—</td><td class="center"><span class="pill pill-orange">Parcial</span></td></tr>
+          <tr><td class="td-brand">ZH</td><td class="center">49.0%</td><td class="center" style="color:var(--text-tertiary)">—</td><td class="center"><span class="pill pill-red">Regresión</span></td></tr>
+          <tr><td class="td-brand">LF</td><td class="center">0%</td><td class="center" style="color:var(--text-tertiary)">—</td><td class="center"><span class="pill pill-red">Sin migrar</span></td></tr>
+          <tr class="total-row"><td class="td-brand">TOTAL</td><td class="center">78.4%</td><td class="center" style="color:var(--text-tertiary)">—</td><td class="center"></td></tr>
         </tbody>
       </table>
     </div>
-    <p class="nota">⚠️ <strong style="color:var(--text-secondary); font-style:normal">Cambio de metodología:</strong> Comercial informaba anteriormente los pesos máximos de las tiendas con mayor número de visitas por cadena. Ahora se informa la media de todas las tiendas de la cadena, lo que explica parte de la variación observada entre cortes.</p>
   </div>
 
   <!-- Footer -->
